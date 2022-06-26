@@ -63,11 +63,11 @@ function playRound(playerSelection, computerSelection){
 }
 
 function roundCount(outCome){
-    if(outCome.subString(0,7) == "You win"){
-        console.log(outCome,outCome.subString(0,7))
+    if(outCome.substring(0,7) == "You win"){
+        // console.log("Outcome Log: ", outCome,outCome.substring(0,7))
         return [1,0];
-    } else if(outCome.subString(0,8) == "You lose"){
-        console.log(outCome,outCome.subString(0,8))
+    } else if(outCome.substring(0,8) == "You lose"){
+        // console.log("Outcome Log: ", outCome,outCome.substring(0,8))
         return [0,1];
     }else {
         return [0,0];
@@ -82,8 +82,19 @@ function game(){
     for(let i = 0; i < 5; i++){    
         let playerSelection = prompt("Rock, paper, or scissors?");
         let computerSelection = computerPlay();
-        console.log(i, playerSelection, computerSelection, playRound(playerSelection, computerSelection))
+        let scores = roundCount(playRound(playerSelection, computerSelection))
+        playerScore = playerScore + Number(scores[0]);
+        computerScore = computerScore + Number(scores[1]);
         playRound(playerSelection, computerSelection)
+        console.log(i, playerSelection, computerSelection, scores, `Playerscore: ${playerScore}`, `Computerscore: ${computerScore}`,  playRound(playerSelection, computerSelection))
+    }
+    if(playerScore > computerScore){
+        return "Player wins!"
+    } 
+    if(playerScore < computerScore){
+        return "Computer wins!"
+    } else {
+        return "Draw!"
     }
 }
 
