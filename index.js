@@ -1,5 +1,3 @@
-const readline = require('readline');
-
 function computerPlay(){
     let plays = ["Rock", "Paper", "Scissors"]
     let choice = Math.floor(Math.random() * 3)
@@ -64,7 +62,23 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+function roundCount(outCome){
+    if(outCome.subString(0,7) == "You win"){
+        console.log(outCome,outCome.subString(0,7))
+        return [1,0];
+    } else if(outCome.subString(0,8) == "You lose"){
+        console.log(outCome,outCome.subString(0,8))
+        return [0,1];
+    }else {
+        return [0,0];
+    }
+
+}
+
 function game(){
+    let playerScore = 0;
+    let computerScore = 0;
+
     for(let i = 0; i < 5; i++){    
         let playerSelection = prompt("Rock, paper, or scissors?");
         let computerSelection = computerPlay();
@@ -72,4 +86,5 @@ function game(){
         playRound(playerSelection, computerSelection)
     }
 }
+
 game()
