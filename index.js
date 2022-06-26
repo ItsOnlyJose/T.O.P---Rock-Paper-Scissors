@@ -61,3 +61,14 @@ function playRound(playerSelection, computerSelection){
         return `Draw!`
     }
 }
+
+function game(){
+    for(let i = 0; i < 5; i++){
+        let playerSelection = prompt("Rock, paper, or scissors?");
+        let computerSelection = computerPlay();
+        console.log(i, playerSelection, computerSelection, playRound(playerSelection, computerSelection))
+        playRound(playerSelection, computerSelection)
+    }
+}
+
+game()
